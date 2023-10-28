@@ -1,7 +1,15 @@
 package model;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
+import org.json.JSONWriter;
 
 import gui.VentanaBorrarUsuario;
 import gui.VentanaCambiarContraseña;
@@ -40,21 +48,99 @@ public class AplicacionUsuarios {
 	}
 
 	private void crearFicheroJson() {
-	
+		try {
+			//COMPROBAR
+			
+			
+	        // Especificar la ubicación del archivo JSON que deseas crear
+	        String filePath = "src/usuarios.json";
+
+	        // Verificar si el archivo ya existe
+	        File file = new File(filePath);
+
+	        if (file.exists()) {
+	            System.out.println("El archivo JSON ya existe.");
+	            return; // No es necesario crearlo de nuevo
+	        }
+	     // Crear un objeto JSON
+	        JSONObject jsonObject1 = new JSONObject();
+
+	        // Crear un arreglo JSON y agregar los objetos JSON al arreglo
+	        JSONArray jsonArray = new JSONArray();
+	        jsonArray.put(jsonObject1);
+	        
+
+	        // Escribir el contenido del arreglo JSON en el archivo
+	        FileWriter fileWriter = new FileWriter(filePath);
+	        jsonArray.write(fileWriter);
+
+	        // Cerrar el escritor de archivos
+	        fileWriter.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 
 	}
 
 	private JSONArray obtenerUsuariosJson() {
-		return null;
+		try {
+            // Especificamos el archivo JSON
+            String filePath = "src/usuarios.json";
 
+            // Leemos el archivo JSON
+            FileReader reader = new FileReader(filePath);
+
+            // Creamos un JSONTokener para tokenizar el archivo
+            JSONTokener tokener = new JSONTokener(reader);
+
+            // Creamos un JSONArray a partir del archivo anterior
+            JSONArray jsonArray = new JSONArray(tokener);
+
+            reader.close(); // Cerramos
+            return jsonArray; //devolvemos el array
+        
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		return null;
 	}
 
 	private int obtenerPosicionUsuario(String nombreUsuario, JSONArray usuarios) {
-		return 0;//sddsadsdas
+		for (int i = 0; i < usuarios.length(); i++) {
+            JSONObject jsonObject = usuarios.getJSONObject(i);
+
+           
+            String nombre = jsonObject.getString("nombre");
+            
+            if(nombre.equals(nombreUsuario))
+            	return i;
+//            System.out.println("Nombre: " + nombre);
+//            System.out.println("Contraseña: " + contraseña);
+//            System.out.println("Edad: " + edad);
+//            System.out.println("Correo: " + correo);
+//            System.out.println();
+        }
+		return -1;//sddsadsdas
 	}
 
 	private JSONObject obtenerUsuarioJson(String nombreUsuario) {
-		return null;//ggdfgdfdgf
+		JSONArray usuarios =obtenerUsuariosJson();
+		for (int i = 0; i < usuarios.length(); i++) {
+            JSONObject jsonObject = usuarios.getJSONObject(i);
+
+           
+            String nombre = jsonObject.getString("nombre");
+            
+            if(nombre.equals(nombreUsuario))
+            	return jsonObject;
+//            System.out.println("Nombre: " + nombre);
+//            System.out.println("Contraseña: " + contraseña);
+//            System.out.println("Edad: " + edad);
+//            System.out.println("Correo: " + correo);
+//            System.out.println();
+        }
+		return null;//sddsadsdas
 
 	}
 
@@ -73,12 +159,88 @@ public class AplicacionUsuarios {
 
 	}
 
-	public void cerrarSesion() {
+	public void cerrarSesion() {    
+		JSONArray usus = obtenerUsuariosJson(); //llamamos a la función
+	            // Iteramos el json con los usuarios
+	            for (int i = 0; i < usus.length(); i++) {
+	                JSONObject jsonObject = usus.getJSONObject(i);
+
+	               
+	                String nombre = jsonObject.getString("nombre");
+	                String contraseña = jsonObject.getString("contraseña");
+	                int edad = jsonObject.getInt("edad");
+	                String correo = jsonObject.getString("correo");
+
+	                System.out.println("Nombre: " + nombre);
+	                System.out.println("Contraseña: " + contraseña);
+	                System.out.println("Edad: " + edad);
+	                System.out.println("Correo: " + correo);
+	                System.out.println();
+	            }
+	            JSONObject newUser = new JSONObject();
+	            newUser.put("nombre", "nuevoUsuario");
+	            newUser.put("contraseña", "nuevaContraseña");
+	            newUser.put("edad", 25);
+	            newUser.put("correo", "nuevoUsuario@correo.com");
+	            
+	            usus.put(newUser);
+	            try {
+	            	
+	            String filePath = "src/usuarios.json";
+	         // Abre el archivo JSON para escritura
+	            FileWriter writer = new FileWriter(filePath);
+
+	         // Escribe el contenido actualizado en el archivo
+	            //JSONWriter jsonWriter = new JSONWriter(writer);
+	            usus.write(writer);
+
+	            // Cierra el escritor de archivos
+	            writer.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
 
 	}
 
 	public void crearUsuario(String nombre, String contraseña, String edad, String correo) {
+		JSONArray usus = obtenerUsuariosJson(); //llamamos a la función
+        // Iteramos el json con los usuarios
+//		for (int i = 0; i < usus.length(); i++) {
+//			JSONObject jsonObject = usus.getJSONObject(i);
+//
+//			String nombre = jsonObject.getString("nombre");
+//			String contraseña = jsonObject.getString("contraseña");
+//			int edad = jsonObject.getInt("edad");
+//			String correo = jsonObject.getString("correo");
+//
+//			System.out.println("Nombre: " + nombre);
+//			System.out.println("Contraseña: " + contraseña);
+//			System.out.println("Edad: " + edad);
+//			System.out.println("Correo: " + correo);
+//			System.out.println();
+//		}
+        JSONObject newUser = new JSONObject();
+        newUser.put("nombre", nombre);
+        newUser.put("contraseña", contraseña);
+        newUser.put("edad", edad);
+        newUser.put("correo", correo);
+        
+        usus.put(newUser);
+        try {
+        	
+        String filePath = "src/usuarios.json";
+     // Abre el archivo JSON para escritura
+        FileWriter writer = new FileWriter(filePath);
 
+     // Escribe el contenido actualizado en el archivo
+        //JSONWriter jsonWriter = new JSONWriter(writer);
+        usus.write(writer);
+
+        // Cierra el escritor de archivos
+        writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public void cambiarContraseña(String nombreUsuario, String nuevaContraseña) {

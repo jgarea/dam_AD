@@ -107,6 +107,18 @@ public class VentanaCrearUsuario extends JFrame implements ActionListener {
 			app.ejecutar();
 			
 		}
+		
+		if(evento.equals("Crear")){
+			System.out.println("Crear");
+			//app.cerrarSesion();
+			app.crearUsuario(textoNombre.getText(),textoContraseña.getText(),textoEdad.getText(),textoCorreo.getText() );
+			textoNombre.setText("");
+			textoContraseña.setText("");
+			textoEdad.setText("");
+			textoCorreo.setText("");
+			app.ejecutar();
+			
+				}
 
 	}
 }
