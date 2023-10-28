@@ -62,6 +62,7 @@ public class AplicacionUsuarios {
 		//ventanaMenuUsuario = new VentanaMenuUsuario(this, "RUTA_FICHERO");
 		//ventanaMenuUsuario.setVisible(true);
 		//ventanaInicioSesion = new VentanaInicioSesion(this);
+		ventanaCrearUsuario.setVisible(false);
 		ventanaInicioSesion.setVisible(true);
 		
 		

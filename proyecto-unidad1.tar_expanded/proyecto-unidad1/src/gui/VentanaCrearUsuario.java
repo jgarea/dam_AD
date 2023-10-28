@@ -100,6 +100,13 @@ public class VentanaCrearUsuario extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String evento = e.getActionCommand();
+		//System.out.println(evento);
+		if (evento.equals("Cancelar")) {
+			//System.out.println("El usuario no existe");
+			app.ejecutar();
+			
+		}
 
 	}
 }
