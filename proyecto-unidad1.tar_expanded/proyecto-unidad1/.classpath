@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="F:/03.DAM/curso 2023-2024/01.AD/tarefas/UNIDADE02/json-20230618.jar">
+	<classpathentry exported="true" kind="lib" path="D:/DAW/alba/DAM/AD02_json/json-20230618.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
