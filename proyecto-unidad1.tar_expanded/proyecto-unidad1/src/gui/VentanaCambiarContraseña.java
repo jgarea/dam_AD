@@ -60,6 +60,22 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String evento = e.getActionCommand();
+		System.out.println(evento);
+		switch (evento) {
+		case "Cambiar":
+			app.cambiarContraseña(nombreUsuario, textoNuevoContraseña.getText());
+			app.cerrarSesion();
+			app.cerrarVentanaCambiarContraseña();
+			app.ejecutar();
+			break;
+		case "Cancelar":
+			app.cerrarVentanaCambiarContraseña(); //cerramos la ventana		
+			break;
+		default:
+			System.out.println("Opción no reconocida");
+			break;
+		}
 
 	}
 

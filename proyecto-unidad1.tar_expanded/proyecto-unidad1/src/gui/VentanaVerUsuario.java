@@ -88,6 +88,6 @@ public class VentanaVerUsuario extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		app.cerrarVerUsuario(); //cerramos la ventana de datos
 	}
 }

@@ -74,6 +74,36 @@ public class VentanaMenuUsuario extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String evento = e.getActionCommand();
+		System.out.println(evento);
+		switch (evento) {
+		case "Ver datos":
+			app.mostrarVentanaVerUsuario(textoNombreUsuario.getText());
+			break;
+		case "Cambiar contraseña":
+			app.mostrarVentanaCambiarContraseña(textoNombreUsuario.getText());
+			break;
+		case "Borrar usuario":
+			app.mostrarVentanaBorrarUsuario(textoNombreUsuario.getText());
+			break;
+		case "Cerrar sesión":
+			app.cerrarSesion();
+			app.ejecutar();
+			break;
+		default:
+			System.out.println("Opción no reconocida");
+			break;
+		}
+
+//		if (evento.equals("Iniciar sesión")) {
+//			//System.out.println("El usuario no existe");
+//			app.iniciarSesion(textoUsuario.getText(), textoContraseña.getText()); //para que nos busque usuario y contraseña
+//			
+//		}
+//		else {
+//			System.out.println("este es crear usuario");
+//			app.mostrarVentanaCrearUsuario();
+//		}
 
 	}
 

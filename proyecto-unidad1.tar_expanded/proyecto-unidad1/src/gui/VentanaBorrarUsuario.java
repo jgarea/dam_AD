@@ -53,7 +53,23 @@ public class VentanaBorrarUsuario extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		String evento = e.getActionCommand();
+		System.out.println(evento);
+		switch (evento) {
+		case "Borrar":
+			app.borrarUsuario(nombreUsuario);
+			app.cerrarVentanaBorrarUsuario();
+			app.cerrarSesion();
+			app.ejecutar();
+			break;
+		case "Cancelar":
+			//app.mostrarVentanaMenuUsuario(nombreUsuario);
+			app.cerrarVentanaBorrarUsuario();
+			break;
+		default:
+			System.out.println("Opción no reconocida");
+			break;
+		}
 	}
 
 }
