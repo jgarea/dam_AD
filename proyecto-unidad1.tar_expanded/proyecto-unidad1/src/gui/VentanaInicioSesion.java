@@ -77,16 +77,15 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String evento = e.getActionCommand();
-		//System.out.println(evento);
+		// System.out.println(evento);
 		if (evento.equals("Iniciar sesión")) {
-			//System.out.println("El usuario no existe");//comprobamos que entra
-			app.iniciarSesion(textoUsuario.getText(), textoContraseña.getText()); //para que nos busque usuario y contraseña
-			//limpiamos los campos usuario y contraseña para que no aparezcan al cerrar sesión:
+			// System.out.println("El usuario no existe");//comprobamos que entra
+			app.iniciarSesion(textoUsuario.getText(), textoContraseña.getText()); // para que nos busque usuario y contraseña
+			// limpiamos los campos usuario y contraseña para que no aparezcan al cerrar sesión:
 			textoUsuario.setText("");
-			textoContraseña.setText("");			
-		}
-		else {
-			//System.out.println("este es crear usuario");//comprobamos que entra
+			textoContraseña.setText("");
+		} else {
+			// System.out.println("este es crear usuario");//comprobamos que entra
 			app.mostrarVentanaCrearUsuario();
 		}
 

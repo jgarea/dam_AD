@@ -3,7 +3,7 @@ package model;
 public class Principal {
 
 	public static void main(String[] args) {
-		//System.out.println("probando");
+		//creamos el objeto de la aplicación y lo ejecutamos
 		AplicacionUsuarios ausu = new AplicacionUsuarios();
 		ausu.ejecutar();
 

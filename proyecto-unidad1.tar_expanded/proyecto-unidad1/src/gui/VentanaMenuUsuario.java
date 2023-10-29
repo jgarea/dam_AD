@@ -95,16 +95,6 @@ public class VentanaMenuUsuario extends JFrame implements ActionListener {
 			break;
 		}
 
-//		if (evento.equals("Iniciar sesión")) {
-//			//System.out.println("El usuario no existe");
-//			app.iniciarSesion(textoUsuario.getText(), textoContraseña.getText()); //para que nos busque usuario y contraseña
-//			
-//		}
-//		else {
-//			System.out.println("este es crear usuario");
-//			app.mostrarVentanaCrearUsuario();
-//		}
-
 	}
 
 }

@@ -101,24 +101,20 @@ public class VentanaCrearUsuario extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String evento = e.getActionCommand();
-		//System.out.println(evento);
+		// System.out.println(evento);//comprobamos
 		if (evento.equals("Cancelar")) {
-			//System.out.println("El usuario no existe");
 			app.ejecutar();
-			
 		}
-		
-		if(evento.equals("Crear")){
+
+		if (evento.equals("Crear")) {
 			System.out.println("Crear");
-			//app.cerrarSesion();
-			app.crearUsuario(textoNombre.getText(),textoContraseña.getText(),textoEdad.getText(),textoCorreo.getText() );
+			// app.cerrarSesion();
+			app.crearUsuario(textoNombre.getText(), textoContraseña.getText(), textoEdad.getText(), textoCorreo.getText());
 			textoNombre.setText("");
 			textoContraseña.setText("");
 			textoEdad.setText("");
 			textoCorreo.setText("");
 			app.ejecutar();
-			
-				}
-
+		}
 	}
 }

@@ -61,7 +61,7 @@ public class VentanaCambiarContraseña extends JFrame implements ActionListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String evento = e.getActionCommand();
-		System.out.println(evento);
+		//System.out.println(evento);//comprobamos
 		switch (evento) {
 		case "Cambiar":
 			app.cambiarContraseña(nombreUsuario, textoNuevoContraseña.getText());
