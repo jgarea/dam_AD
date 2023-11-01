@@ -54,7 +54,7 @@ public class VentanaBorrarUsuario extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String evento = e.getActionCommand();
-		System.out.println(evento);
+		//System.out.println(evento);//probamos
 		switch (evento) {
 		case "Borrar":
 			app.borrarUsuario(nombreUsuario);

@@ -32,21 +32,11 @@ public class AplicacionUsuarios {
 	private VentanaBorrarUsuario ventanaBorrarUsuario;
 
 	/**
-	 * @param ventanaInicioSesion
-	 * @param ventanaCrearUsuario
-	 * @param ventanaMenuUsuario
-	 * @param ventanaVerUsuario
-	 * @param ventanaCambiarContraseña
-	 * @param ventanaBorrarUsuario
+	 * Método contructor
 	 */
 	public AplicacionUsuarios() {
-		// super();
 		this.ventanaInicioSesion = new VentanaInicioSesion(this);
 		this.ventanaCrearUsuario = new VentanaCrearUsuario(this);
-		// this.ventanaMenuUsuario = new VentanaMenuUsuario(null, RUTA_FICHERO);
-		// this.ventanaVerUsuario = new VentanaVerUsuario();
-		// this.ventanaCambiarContraseña = ventanaCambiarContraseña;
-		// this.ventanaBorrarUsuario = ventanaBorrarUsuario;
 	}
 
 	/**
@@ -54,25 +44,27 @@ public class AplicacionUsuarios {
 	 */
 	private void crearFicheroJson() {
 		try {
-			// Verificamos si el archivo ya existe
+			//creamos un objeto de la clase File
 			File file = new File(RUTA);
-
+			
+			// Verificamos si el archivo ya existe
 			if (file.exists()) {
-				System.out.println("El archivo JSON ya existe.");
+				//System.out.println("El archivo JSON ya existe.");
 				return;
 			}
 			file.createNewFile(); // si no existe, lo crea
 
-			// Creamos un objeto JSON
-			JSONObject usuario = new JSONObject();
+//			// Creamos un objeto JSON
+//			JSONObject usuario = new JSONObject();
+//
+//			// Creamos un array para meter todos los usuarios
+//			JSONArray jsonArray = new JSONArray();
+//			jsonArray.put(usuario);
 
-			// Creamos un array para meter todos los usuarios
-			JSONArray jsonArray = new JSONArray();
-			jsonArray.put(usuario);
-
-			// Escribir el contenido del arreglo JSON en el archivo
+			// Escribimos el contenido del array JSON en el archivo	
 			FileWriter fileWriter = new FileWriter(RUTA);
-			jsonArray.write(fileWriter);
+			fileWriter.write("[]");
+			//jsonArray.write(fileWriter);
 
 			// Cerrar el escritor de archivos
 			fileWriter.close();
@@ -87,10 +79,10 @@ public class AplicacionUsuarios {
 	 * @return
 	 */
 	private JSONArray obtenerUsuariosJson() {
-		try {
+		try{
 			// Leemos el archivo JSON
 			FileReader reader = new FileReader(RUTA);
-
+			
 			// Creamos un JSONTokener para tokenizar el archivo
 			JSONTokener tokener = new JSONTokener(reader);
 
@@ -103,7 +95,6 @@ public class AplicacionUsuarios {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 
@@ -140,7 +131,6 @@ public class AplicacionUsuarios {
 				return jsonObject;
 		}
 		return null;// en caso de que no exista
-
 	}
 
 	/**
@@ -149,7 +139,7 @@ public class AplicacionUsuarios {
 	public void ejecutar() {
 		crearFicheroJson();// llamamos al método
 		ventanaCrearUsuario.setVisible(false);// ocultamos la ventana de crear usuario
-		ventanaInicioSesion.setVisible(true);
+		ventanaInicioSesion.setVisible(true);  //visibilizamos la ventana inicio de sesión
 	}
 
 	/**
@@ -170,13 +160,12 @@ public class AplicacionUsuarios {
 				mostrarVentanaMenuUsuario(nombreUsuario);
 				return;
 			} else if (nombre.equals(nombreUsuario) && !contraseña.equals(contraseñaUsuario)) {
-				System.out.println("¡¡La contraseña es incorrecta!!");
-				throw new WrongPasswordException ();
-				
+				//System.out.println("¡¡La contraseña es incorrecta!!");
+				throw new WrongPasswordException ();//lanzamos la excepción creada en el paquete exception				
 			}
 		}
-		System.out.println("¡¡El usuario no existe!!");
-		throw  new UserNotFoundException();
+		//System.out.println("¡¡El usuario no existe!!");
+		throw  new UserNotFoundException(); //lanzamos la excepción creada en el paquete exception
 
 	}
 
@@ -205,9 +194,8 @@ public class AplicacionUsuarios {
 		//lo añadimos al array
 		usus.put(nuevoUsuario);
 		try {
-			String ruta = "src/usuarios.json";
 			// Abrimos el archivo JSON para escritura
-			FileWriter writer = new FileWriter(ruta);
+			FileWriter writer = new FileWriter(RUTA);
 			// Escribimos el contenido actualizado en el archivo
 			usus.write(writer);
 			// Cerramos el writer
@@ -227,8 +215,7 @@ public class AplicacionUsuarios {
 		borrarUsuario(nombreUsuario);
 		usu.put("contraseña", nuevaContraseña);
 		crearUsuario(nombreUsuario, nuevaContraseña, usu.getString("edad"), usu.getString("correo"));
-		System.out.println("Cambio correcto");
-
+		//System.out.println("Cambio correcto");//comprobamos
 	}
 
 	/**
@@ -240,12 +227,10 @@ public class AplicacionUsuarios {
 		JSONArray ususGuardados = new JSONArray(); // meteremos los usuarios que vamos a guardar
 		// Iteramos el json con los usuarios
 		for (int i = 0; i < usus.length(); i++) {
-
 			JSONObject jsonObject = usus.getJSONObject(i);
-
 			String nombre = jsonObject.getString("nombre");
 			String contraseña = jsonObject.getString("contraseña");
-			int edad = jsonObject.getInt("edad");
+			String edad = jsonObject.getString("edad");
 			String correo = jsonObject.getString("correo");
 			if (!nombre.equals(nombreUsuario)) {
 				ususGuardados.put(jsonObject);
@@ -253,16 +238,11 @@ public class AplicacionUsuarios {
 		}
 
 		try {
-
-			String filePath = "src/usuarios.json";
-			// Abre el archivo JSON para escritura
-			FileWriter writer = new FileWriter(filePath);
-
-			// Escribe el contenido actualizado en el archivo
-
+			// Abrimos el archivo JSON con la ruta especificada para escribirlo	
+			FileWriter writer = new FileWriter(RUTA);
+			// Escribimos el contenido actualizado en el archivo
 			ususGuardados.write(writer);
-
-			// Cierra el escritor de archivos
+			// Cerramos
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -295,8 +275,7 @@ public class AplicacionUsuarios {
 	public void mostrarVentanaVerUsuario(String nombreUsuario) {
 		// ventanaInicioSesion.setVisible(false);
 		JSONObject usuario = obtenerUsuarioJson(nombreUsuario);
-		ventanaVerUsuario = new VentanaVerUsuario(this, nombreUsuario, usuario.getString("edad"),
-				usuario.getString("correo"));
+		ventanaVerUsuario = new VentanaVerUsuario(this, nombreUsuario, usuario.getString("edad"), usuario.getString("correo"));
 		ventanaVerUsuario.setVisible(true);// visualizamos la ventana del usuario
 	}
 
@@ -336,7 +315,7 @@ public class AplicacionUsuarios {
 	 * método que cierra la ventana de borrar Usuario
 	 */
 	public void cerrarVentanaBorrarUsuario() {
-		ventanaBorrarUsuario.setVisible(false);
+		ventanaBorrarUsuario.setVisible(false);//invisibilizamos la ventana borrar usuario
 		
 	}
 }

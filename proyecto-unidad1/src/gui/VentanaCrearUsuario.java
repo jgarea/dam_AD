@@ -107,8 +107,7 @@ public class VentanaCrearUsuario extends JFrame implements ActionListener {
 		}
 
 		if (evento.equals("Crear")) {
-			System.out.println("Crear");
-			// app.cerrarSesion();
+			//System.out.println("Crear");//comprobamos que entra
 			app.crearUsuario(textoNombre.getText(), textoContraseña.getText(), textoEdad.getText(), textoCorreo.getText());
 			textoNombre.setText("");
 			textoContraseña.setText("");
