@@ -20,15 +20,17 @@ La aplicación permitirá realizar lo siguiente:
 En el proyecto se os proporciona un paquete gui que contiene las interfaces de la aplicación y un paquete model que contiene la lógica de la aplicación. Debéis realizar las modificaciones correspondientes sobre las clases de estos paquetes.
 
 ## Pasos previos
-MATERIAL A DESCARGAR
-Para descargar el proyecto podéis clicar en el siguiente enlace.
+> [!NOTE] MATERIAL A DESCARGAR
+> 
+> Para descargar el proyecto podéis clicar en el siguiente enlace.
 
 Primero debéis descargar el proyecto desde el enlace anterior e importarlo.
 
-NOTA IMPORTANTE
-Una vez descargado el fichero del proyecto, es necesario renombrarlo antes de poder importarlo o descomprimirlo
-
-Por ejemplo, si el fichero descargado se llama: proyecto-unidad1.tar-ea989dab2692d9ae69a8330c92b139c2.gz habrá que renombrarlo a: proyecto-unidad1.tar para poder descomprimirlo o importarlo.
+> [!IMPORTANT] 
+> NOTA IMPORTANTE
+> Una vez descargado el fichero del proyecto, es necesario renombrarlo antes de poder importarlo o descomprimirlo
+> 
+> Por ejemplo, si el fichero descargado se llama: proyecto-unidad1.tar-ea989dab2692d9ae69a8330c92b139c2.gz habrá que renombrarlo a: proyecto-unidad1.tar para poder descomprimirlo o importarlo.
 
 Después, para trabajar con ficheros JSON desde Java vamos a usar el paquete org.json. Para poder usarlo, debemos descargarnos el archivo .jar correspondiente desde el repositorio de Maven: Enlace Maven o bien desde el siguiente enlace
 
