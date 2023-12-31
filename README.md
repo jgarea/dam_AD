@@ -24,7 +24,7 @@ En el proyecto se os proporciona un paquete gui que contiene las interfaces de l
 ## 1.2. Pasos previos
 > [!NOTE] 
 > MATERIAL A DESCARGAR 
-> Para descargar el proyecto podéis clicar en el siguiente enlace.
+> Para descargar el proyecto podéis clicar en el siguiente [enlace](https://mp0486-add.vercel.app/assets/files/proyecto-unidad1.tar-65842b7b6f24a71a1f69ad402e24ff04.gz).
 
 Primero debéis descargar el proyecto desde el enlace anterior e importarlo.
 
