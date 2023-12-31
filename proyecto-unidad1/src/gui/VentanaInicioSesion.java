@@ -92,16 +92,14 @@ public class VentanaInicioSesion extends JFrame implements ActionListener {
 			textoUsuario.setText("");
 			textoContraseña.setText("");
 		} catch (UserNotFoundException e) {
-
+			//mostramos el mensaje de que el usuario no existe en un popup
 			JOptionPane.showMessageDialog(contentPane, "El usuario no existe",
 					"Login", JOptionPane.WARNING_MESSAGE);
-
 			//throw new RuntimeException(e);
 		} catch (WrongPasswordException e) {
-
+			//mostramos el mensaje de que la contraseña es incorrecta en un popup
 			JOptionPane.showMessageDialog(contentPane, "Contraseña incorrecta",
 					"Login", JOptionPane.WARNING_MESSAGE);
-
 			//throw new RuntimeException(e);
 		}
 

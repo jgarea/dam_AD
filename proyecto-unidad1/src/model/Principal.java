@@ -4,8 +4,8 @@ public class Principal {
 
 	public static void main(String[] args) {
 		//creamos el objeto de la aplicación y lo ejecutamos
-		AplicacionUsuarios ausu = new AplicacionUsuarios();
-		ausu.ejecutar();
+		AplicacionUsuarios appUsu = new AplicacionUsuarios();
+		appUsu.ejecutar();
 
 	}
 }
