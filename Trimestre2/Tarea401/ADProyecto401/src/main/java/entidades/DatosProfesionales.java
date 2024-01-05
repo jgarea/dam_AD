@@ -7,6 +7,7 @@ package entidades;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,9 +24,11 @@ import javax.persistence.Table;
 public class DatosProfesionales implements Serializable{
     @Id
     @OneToOne
-    @JoinColumn(name = "dni")
+    @JoinColumn(name = "dni",columnDefinition = "char")
     private Empleado empleado;
+    @Column(name = "categoria",columnDefinition = "enum")
     private String categoria;
+    @Column(name="sueldo_bruto",columnDefinition = "decimal")
     private Double sueldoBruto;
     // getters y setters
 

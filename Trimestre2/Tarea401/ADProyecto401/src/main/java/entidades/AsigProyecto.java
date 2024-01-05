@@ -7,6 +7,7 @@ package entidades;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,13 +23,15 @@ import javax.persistence.Table;
 public class AsigProyecto implements Serializable{
     @Id
     @ManyToOne
-    @JoinColumn(name = "dni_emp")
+    @JoinColumn(name = "dni_emp",columnDefinition = "char")
     private Empleado empleado;
     @Id
     @ManyToOne
     @JoinColumn(name = "id_proyecto")
     private Proyecto proyecto;
+    @Column(name = "fecha_inicio")
     private Date fechaInicio;
+    @Column(name = "fecha_fin")
     private Date fechaFin;
     
     

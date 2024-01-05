@@ -36,20 +36,27 @@ public class ProyectoRepositorio implements Repositorio<Proyecto, Integer> {
 
     @Override
     public List<Proyecto> encontrarTodos() {
-        
-        Query query = sesion.createQuery("SELECT p.nombre FROM Proyecto p where id=1");
-List<Proyecto> listDatos = query.getResultList();
-for (Proyecto datos : listDatos){
-    System.out.println(datos);
-}
 
-        return null;
-        
+        Query query = sesion.createQuery("SELECT p FROM Proyecto p");
+        List<Proyecto> listDatos = query.getResultList();
+
+        return listDatos;
+
     }
 
     @Override
     public Proyecto encontrarUnoPorID(Integer nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Transaction trx = this.sesion.beginTransaction();
+
+        Query query = this.sesion.createQuery("SELECT p FROM Proyecto p where p.id=:id");
+
+        query.setParameter("id", nombre.intValue());
+
+        Proyecto proyecto = (Proyecto) query.getSingleResult();
+
+        trx.commit();
+
+        return proyecto;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Main {
 		
 		sc = new Scanner(System.in);
 		
-		Session session = HibernateUtil.get().openSession();
+		try(Session session = HibernateUtil.get().openSession();){
                 
                 pRepositorio= new ProyectoRepositorio(session);
                 
@@ -29,14 +29,17 @@ public class Main {
                 
                 session.close();
                 System.out.println("Conexion cerrada");
+                }
     }
 
     private static void mostrarMenu() {
         List<Proyecto> lista=pRepositorio.encontrarTodos();
+        //Proyecto pr=pRepositorio.encontrarUnoPorID(1);
+        //System.out.println("pr = " + pr);
         
-//        for (Proyecto proyecto : lista) {
-//            System.out.println(proyecto);
-//        }
+        for (Proyecto proyecto : lista) {
+            System.out.println(proyecto);
+        }
 
         
         
