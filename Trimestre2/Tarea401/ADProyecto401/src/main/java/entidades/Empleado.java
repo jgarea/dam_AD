@@ -5,6 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -50,6 +51,31 @@ public class Empleado implements Serializable{
         this.nombre = nombre;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.dni);
+        hash = 47 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Empleado other = (Empleado) obj;
+        return Objects.equals(this.dni, other.dni);
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + '}';

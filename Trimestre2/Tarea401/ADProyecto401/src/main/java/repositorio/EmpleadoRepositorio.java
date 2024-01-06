@@ -4,6 +4,7 @@
  */
 package repositorio;
 
+import entidades.Empleado;
 import entidades.Proyecto;
 import java.util.List;
 import javax.persistence.Query;
@@ -14,58 +15,55 @@ import org.hibernate.Transaction;
  *
  * @author Juan
  */
-public class ProyectoRepositorio implements Repositorio<Proyecto, Integer> {
+public class EmpleadoRepositorio implements Repositorio<Empleado, String>{
 
     private Session sesion;
 
-    public ProyectoRepositorio(Session sesion) {
+    public EmpleadoRepositorio(Session sesion) {
         this.sesion = sesion;
     }
-
     @Override
-    public void insertarUno(Proyecto t) {
+    public void insertarUno(Empleado t) {
         Transaction trx = sesion.beginTransaction();
-        sesion.save(t);
-        trx.commit();
+	sesion.save(t);
+	trx.commit();
     }
 
     @Override
-    public void borrar(Proyecto t) {
+    public void borrar(Empleado t) {
         Transaction trx = sesion.beginTransaction();
 	sesion.delete(t);
 	trx.commit();
     }
 
     @Override
-    public List<Proyecto> encontrarTodos() {
-
-        Query query = sesion.createQuery("SELECT p FROM Proyecto p");
-        List<Proyecto> listDatos = query.getResultList();
+    public List<Empleado> encontrarTodos() {
+        Query query = sesion.createQuery("SELECT e FROM Empleado e");
+        List<Empleado> listDatos = query.getResultList();
 
         return listDatos;
-
     }
 
     @Override
-    public Proyecto encontrarUnoPorID(Integer key) {
+    public Empleado encontrarUnoPorID(String key) {
         Transaction trx = this.sesion.beginTransaction();
 
-        Query query = this.sesion.createQuery("SELECT p FROM Proyecto p where p.id=:id");
+        Query query = this.sesion.createQuery("SELECT e FROM Empleado e where e.dni=:dni");
 
-        query.setParameter("id", key.intValue());
+        query.setParameter("dni", key);
 
-        Proyecto proyecto = (Proyecto) query.getSingleResult();
+        Empleado empleado = (Empleado) query.getSingleResult();
 
         trx.commit();
 
-        return proyecto;
+        return empleado;
     }
 
     @Override
-    public void actualizar(Proyecto t) {
+    public void actualizar(Empleado t) {
         Transaction trx = sesion.beginTransaction();
 	sesion.update(t);
 	trx.commit();
     }
-
+    
 }

@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -28,11 +29,11 @@ public class AsigProyecto implements Serializable{
     @JoinColumn(name = "id_proyecto")
     private Proyecto proyecto;
     @Column(name = "fecha_inicio")
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate fechaInicio;
     @Column(name = "fecha_fin")
-    @Temporal(TemporalType.DATE)
-    private Date fechaFin;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate fechaFin;
     
     
     // getters y setters
@@ -40,7 +41,7 @@ public class AsigProyecto implements Serializable{
     public AsigProyecto() {
     }
 
-    public AsigProyecto(Empleado empleado, Proyecto proyecto, Date fechaInicio, Date fechaFin) {
+    public AsigProyecto(Empleado empleado, Proyecto proyecto, LocalDate fechaInicio, LocalDate fechaFin) {
         this.empleado = empleado;
         this.proyecto = proyecto;
         this.fechaInicio = fechaInicio;
@@ -63,19 +64,19 @@ public class AsigProyecto implements Serializable{
         this.proyecto = proyecto;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -85,9 +86,7 @@ public class AsigProyecto implements Serializable{
         if (o == null || getClass() != o.getClass()) return false;
         AsigProyecto that = (AsigProyecto) o;
         return Objects.equals(empleado, that.empleado) &&
-                Objects.equals(proyecto, that.proyecto) &&
-                Objects.equals(fechaInicio, that.fechaInicio) &&
-                Objects.equals(fechaFin, that.fechaFin);
+                Objects.equals(proyecto, that.proyecto);
     }
 
     @Override

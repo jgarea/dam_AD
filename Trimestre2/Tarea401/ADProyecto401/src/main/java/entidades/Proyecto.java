@@ -5,7 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,12 +34,12 @@ public class Proyecto implements Serializable{
     private String nombre;
     
     @Column(name = "fecha_inicio")
-    @Temporal(TemporalType.DATE)
-    private Date fecha_inicio;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate fecha_inicio;
     
     @Column(name = "fecha_fin")
-    @Temporal(TemporalType.DATE)
-    private Date fecha_fin;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate fecha_fin;
     
     @ManyToOne
     @JoinColumn(name = "dni_jefe_proyecto")
@@ -49,6 +47,22 @@ public class Proyecto implements Serializable{
 
     public Proyecto() {
     }
+
+    public Proyecto(int id, String nombre, LocalDate fecha_inicio, Empleado jefeProyecto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha_inicio = fecha_inicio;
+        this.jefeProyecto = jefeProyecto;
+    }
+
+    public Proyecto(String nombre, LocalDate fecha_inicio, LocalDate fecha_fin, Empleado jefeProyecto) {
+        this.nombre = nombre;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.jefeProyecto = jefeProyecto;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -66,19 +80,19 @@ public class Proyecto implements Serializable{
         this.nombre = nombre;
     }
 
-    public Date getFecha_inicio() {
+    public LocalDate getFecha_inicio() {
         return fecha_inicio;
     }
 
-    public void setFecha_inicio(Date fecha_inicio) {
+    public void setFecha_inicio(LocalDate fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public Date getFecha_fin() {
+    public LocalDate getFecha_fin() {
         return fecha_fin;
     }
 
-    public void setFecha_fin(Date fecha_fin) {
+    public void setFecha_fin(LocalDate fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
 
@@ -93,6 +107,7 @@ public class Proyecto implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 89 * hash + this.id;
         hash = 89 * hash + Objects.hashCode(this.nombre);
         hash = 89 * hash + Objects.hashCode(this.fecha_inicio);
         hash = 89 * hash + Objects.hashCode(this.fecha_fin);
@@ -112,17 +127,10 @@ public class Proyecto implements Serializable{
             return false;
         }
         final Proyecto other = (Proyecto) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.fecha_inicio, other.fecha_inicio)) {
-            return false;
-        }
-        if (!Objects.equals(this.fecha_fin, other.fecha_fin)) {
-            return false;
-        }
-        return Objects.equals(this.jefeProyecto, other.jefeProyecto);
+        return this.id == other.id;
     }
+
+    
     
     @Override
     public String toString() {
