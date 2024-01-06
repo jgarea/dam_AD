@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entidades;
 
 import java.io.Serializable;
@@ -13,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -30,8 +28,10 @@ public class AsigProyecto implements Serializable{
     @JoinColumn(name = "id_proyecto")
     private Proyecto proyecto;
     @Column(name = "fecha_inicio")
+    @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Column(name = "fecha_fin")
+    @Temporal(TemporalType.DATE)
     private Date fechaFin;
     
     
