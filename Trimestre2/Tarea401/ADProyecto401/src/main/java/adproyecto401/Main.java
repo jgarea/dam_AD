@@ -100,6 +100,8 @@ public class Main {
         System.out.println("3. Modificar.");
         System.out.println("4. Asignar empleado a proyecto.");
         System.out.println("5.Indicar el fin de la participación de un empleado en un proyecto.	");
+        System.out.println("6. Cambiar el jefe de un proyecto.	");
+        System.out.println("7. Mostrar los datos de un proyecto (nombre, fechas, empleados…).");
         int opcion = 0;
         opcion = Integer.parseInt(sc.nextLine());
         switch (opcion) {
@@ -116,6 +118,11 @@ public class Main {
                 AsigProyecto ap=aRepositorio.encontrarUnoPorID(ee, pe);
                 ap.setFechaFin(LocalDate.now());
                 aRepositorio.actualizar(ap);
+                break;
+            case 7:
+                System.out.println("Selecciona el proyecto");
+                Proyecto pr= pRepositorio.encontrarUnoPorID(1);
+                System.out.println(pr);
                 break;
         }
         
