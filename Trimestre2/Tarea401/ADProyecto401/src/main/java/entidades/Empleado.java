@@ -5,10 +5,17 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,6 +30,14 @@ public class Empleado implements Serializable{
     private String dni;
     @Column(name = "nombre")
     private String nombre;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "asig_proyecto", 
+        joinColumns = @JoinColumn(name = "dni_emp"), 
+        inverseJoinColumns = @JoinColumn(name = "id_proyecto")
+    )
+    private List<Proyecto> proyectos;
+    
 
     public Empleado() {
     }
@@ -31,6 +46,15 @@ public class Empleado implements Serializable{
         this.dni = dni;
         this.nombre = nombre;
     }
+
+    public Empleado(String dni, String nombre, List<Proyecto> proyectos) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.proyectos = proyectos;
+    }
+
+    
+    
     
     
     // getters y setters
@@ -51,6 +75,15 @@ public class Empleado implements Serializable{
         this.nombre = nombre;
     }
 
+    public List<Proyecto> getProyectos() {
+        return proyectos;
+    }
+
+    public void setProyectos(List<Proyecto> proyectos) {
+        this.proyectos = proyectos;
+    }
+    
+   
     @Override
     public int hashCode() {
         int hash = 7;

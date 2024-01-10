@@ -6,13 +6,17 @@ package entidades;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -45,6 +49,9 @@ public class Proyecto implements Serializable{
     @JoinColumn(name = "dni_jefe_proyecto")
     private Empleado jefeProyecto;
 
+    @ManyToMany(mappedBy = "proyectos")
+    private List<Empleado> empleados;
+    
     public Proyecto() {
     }
 
@@ -61,6 +68,17 @@ public class Proyecto implements Serializable{
         this.fecha_fin = fecha_fin;
         this.jefeProyecto = jefeProyecto;
     }
+
+    public Proyecto(int id, String nombre, LocalDate fecha_inicio, LocalDate fecha_fin, Empleado jefeProyecto, List<Empleado> empleados) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.jefeProyecto = jefeProyecto;
+        this.empleados = empleados;
+    }
+    
+    
     
     
 
@@ -104,6 +122,17 @@ public class Proyecto implements Serializable{
         this.jefeProyecto = jefeProyecto;
     }
 
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+  
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -130,12 +159,14 @@ public class Proyecto implements Serializable{
         return this.id == other.id;
     }
 
-    
-    
     @Override
     public String toString() {
-        return "Proyecto{" + "id=" + id + ", nombre=" + nombre + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", jefeProyecto=" + jefeProyecto + '}';
+        return "Proyecto{" + "id=" + id + ", nombre=" + nombre + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", jefeProyecto=" + jefeProyecto + ", empleados=" + empleados + '}';
     }
+
+    
+    
+   
 
 
 
